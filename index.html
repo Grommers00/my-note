@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="stylesheet" href="notepad.css">
     <title>My Web Note Pad</title>
 </head>
 
@@ -14,36 +14,36 @@
     <script>const fs = new Filer.FileSystem();
 
         window.addEventListener('DOMContentLoaded', (event) => {
-            console.log('DOM fully loaded and parsed');
             fs.readFile('/note', 'utf8', function (err, data) {
                 if (err) {
                     console.log(err);
                     fs.writeFile('/note', 'utf8', function (err) {
-                        if (err) console.log(err); console.log(" - ana"); throw err;
+                        if (err) console.log(err); throw err;
                     });
                 } if (data) {
-                    console.log(data);
                     document.querySelector('#note').innerHTML = data;
 
                 }
             })
         })
-        
-       
-        
-        function saveFile(a)
-{
-fs.writeFile('/note', document.querySelector('#note').innerHTML);
-}
 
-function removeText(){
-document.querySelector('#note').innerHTML = "";
-}
+
+
+        function saveFile() {
+            fs.writeFile('/note', document.querySelector('#note').innerHTML);
+          
+        }
+
+        function removeText() {
+            document.querySelector('#note').innerHTML = ""
+        }
 
     </script>
-    <button onclick="saveFile()">saveFile</button>
-    <button<</button>
     <div id="note" contenteditable></div>
+    <button onclick="saveFile()">saveFile</button>
+    <button onclick="removeText()">Remove all text</button>
+
+
 </body>
 
 </html>
