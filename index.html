@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>My Web Note Pad</title>
 </head>
+
 <body>
-    <p> Hello World!</p>
+    <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+    <script>const fs = new Filer.FileSystem();
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded and parsed');
+            fs.readFile('/note', 'utf8', function (err, data) {
+                if (err) {
+                    console.log(err);
+                    fs.writeFile('/note', 'utf8', function (err) {
+                        if (err) console.log(err); console.log(" - ana"); throw err;
+                    });
+                } if (data) {
+                    console.log(data);
+                    document.querySelector('#note').innerHTML = data;
+
+                }
+            })
+        })
+        
+        window.setInterval(saveFile,  1000, 'saved');
+        
+        function saveFile(a)
+{
+fs.writeFile('/note', document.querySelector('#note').innerHTML);
+ console.log(a);
+ 
+}
+        
+
+    </script>
+    <div id="note" contenteditable></div>
 </body>
+
 </html>
