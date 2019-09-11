@@ -29,17 +29,20 @@
             })
         })
         
-        window.setInterval(saveFile,  1000, 'saved');
+       
         
         function saveFile(a)
 {
 fs.writeFile('/note', document.querySelector('#note').innerHTML);
- console.log(a);
- 
 }
-        
+
+function removeText(){
+document.querySelector('#note').innerHTML = "";
+}
 
     </script>
+    <button onclick="saveFile()">saveFile</button>
+    <button<</button>
     <div id="note" contenteditable></div>
 </body>
 
