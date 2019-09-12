@@ -10,7 +10,14 @@
 </head>
 
 <body>
-    <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+   
+    <div id="note" contenteditable style="min-height:15px"></div>
+    <button onclick="saveFile()">saveFile</button>
+    <button onclick="removeText()">Remove all text</button>
+
+
+</body>
+ <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
     <script>const fs = new Filer.FileSystem();
 
         window.addEventListener('DOMContentLoaded', (event) => {
@@ -39,11 +46,4 @@
         }
 
     </script>
-    <div id="note" contenteditable style="min-height:15px"></div>
-    <button onclick="saveFile()">saveFile</button>
-    <button onclick="removeText()">Remove all text</button>
-
-
-</body>
-
 </html>
