@@ -10,15 +10,14 @@
 </head>
 
 <body>
-   
+
     <div id="note" contenteditable style="min-height:15px"></div>
     <button onclick="saveFile()">saveFile</button>
     <button onclick="removeText()">Remove all text</button>
 
-
-</body>
- <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
-    <script>const fs = new Filer.FileSystem();
+    <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+    <script>
+        const fs = new Filer.FileSystem();
 
         window.addEventListener('DOMContentLoaded', (event) => {
             fs.readFile('/note', 'utf8', function (err, data) {
@@ -34,16 +33,14 @@
             })
         })
 
-
-
         function saveFile() {
             fs.writeFile('/note', document.querySelector('#note').innerHTML);
-          
         }
 
         function removeText() {
             document.querySelector('#note').innerHTML = ""
         }
-
     </script>
+</body>
+
 </html>
