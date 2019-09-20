@@ -48,8 +48,13 @@
         }
 
         function saveFile() {
-            fs.writeFile('/note', document.querySelector('#note').innerHTML);
-            alertMsg("Saved!");
+            fs.writeFile('/note', document.querySelector('#note').innerHTML, function(err) {
+                if(err) {
+                    console.error('Error saving', err);
+                    return alertMsg('Unable to Save!');
+                }
+                alertMsg('Saved!');
+            });
         }
 
         function removeText() {
