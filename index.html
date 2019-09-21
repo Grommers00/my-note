@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="notepad.css">
     <style>
         #alert {text-align: center; visibility: hidden; width:15%; font-size: 20pt; margin-top:10pt}
+    #autoSaveText {
+        text-align: left;
+        
+    }
     </style>
+
     <title>My Web Note Pad</title>
 </head>
 
@@ -18,6 +23,7 @@
         <div id="note" contenteditable class="paper" style="min-height:15px"></div>
         <button class="btn-secondary" onclick="saveFile()">saveFile</button>
         <button class="btn-warning" onclick="removeText()">Remove all text</button>
+        <div class="col col-5" id="autoSaveText">Auto-Saving In <span id="time">20</span> Seconds</div>
         <div id="alert" class="alert alert-danger"></div>
     </div>
 
@@ -57,10 +63,29 @@
             });
         }
 
+        setInterval(saveFile, 21000);
+
         function removeText() {
             document.querySelector('#note').innerHTML = ""
             alertMsg("Removed Text!");
         }
+
+        function startTimer(duration, display) {
+            var timer = duration, seconds;
+            setInterval(function () {
+                seconds = parseInt(timer % 60, 10);
+                display.textContent =seconds;
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+        window.onload = function () {
+            var twentysec = 20,
+                display = document.querySelector('#time');
+            startTimer(twentysec, display);
+        };
+
     </script>
 </body>
 </html>
